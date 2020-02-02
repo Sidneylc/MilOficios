@@ -53,6 +53,7 @@
     <Compile Include="MilOficios\LugaresRepository.cs" />
     <Compile Include="MilOficios\MilOficiosUnitOfWork.cs" />
     <Compile Include="MilOficios\ServiciosRepository.cs" />
+    <Compile Include="MilOficios\UserRepository.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repository.cs" />
   </ItemGroup>
@@ -64,6 +65,10 @@
     <ProjectReference Include="..\MilOficios.Repositories\MilOficios.Repositories.csproj">
       <Project>{95d51686-73cc-4834-9dde-11dd59c09caa}</Project>
       <Name>MilOficios.Repositories</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\MilOficios.UnitOfWork\MilOficios.UnitOfWork.csproj">
+      <Project>{fd3fb43d-4cec-4360-86b5-507d9e9c72c7}</Project>
+      <Name>MilOficios.UnitOfWork</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

@@ -12,6 +12,7 @@ namespace MilOficios.Repositories.Dapper.MilOficios
             Contratos = new ContratosRepository(connectionString);
             Lugares = new LugaresRepository(connectionString);
             Servicios = new ServiciosRepository(connectionString);
+            Users = new UserRepository(connectionString);
         }
 
         public IClientesRepository Clientes { get; private set; }
@@ -19,6 +20,6 @@ namespace MilOficios.Repositories.Dapper.MilOficios
         public IContratosRepository Contratos { get; private set; }
         public ILugaresRepository Lugares { get; private set; }
         public IServiciosRepository Servicios { get; private set; }
-
+        public IUserRepository Users { get; private set; }
     }
 }

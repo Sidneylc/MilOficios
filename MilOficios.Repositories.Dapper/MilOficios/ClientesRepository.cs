@@ -82,7 +82,7 @@ namespace MilOficios.Repositories.Dapper.MilOficios
                 var parameters = new DynamicParameters();
                 parameters.Add("@startRow", startRow);
                 parameters.Add("@endRow", endRow);
-                return connection.Query<Cliente>("dbo.uspCustomerPagedList", parameters,
+                return connection.Query<Cliente>("dbo.uspClientePagedList", parameters,
                     commandType: CommandType.StoredProcedure);
             }
         }

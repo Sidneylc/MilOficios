@@ -9,5 +9,6 @@ namespace MilOficios.UnitOfWork
         IContratosRepository Contratos { get; }
         ILugaresRepository Lugares { get; }
         IServiciosRepository Servicios { get; }
+        IUserRepository Users { get; }
     }
 }

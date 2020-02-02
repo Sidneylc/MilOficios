@@ -1,0 +1,84 @@
+﻿@model MilOficios.Models.Cliente
+
+<h2>Edit</h2>
+@Messages.Message("inUse", "Edit", "danger", "Este Cliente está en uso " +
+    "en este momento.")
+
+@using (Ajax.BeginForm("Update", new { Controller = "Cliente" },
+                        new AjaxOptions
+                        {
+                            HttpMethod = "POST",
+                            InsertionMode = InsertionMode.Replace,
+                            UpdateTargetId = "modal-body",
+                            OnSuccess = "cliente.success('edit');" +
+                            "cliente.removeHubCliente('" + @Model.Codigo + "');"
+                        },
+                        htmlAttributes: new { id = "editForm" }
+                      )
+        )
+{
+    @Html.AntiForgeryToken()
+
+<div class="form-horizontal">
+    <h4>Cliente</h4>
+    <hr />
+    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+    @Html.HiddenFor(model => model.Codigo)
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.Nombre, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.Nombre, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.Nombre, "", new { @class = "text-danger" })
+        </div>
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(model => model.Apellido, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.Apellido, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.Apellido, "", new { @class = "text-danger" })
+        </div>
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(model => model.Dni, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.Dni, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.Dni, "", new { @class = "text-danger" })
+        </div>
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(model => model.Telefono, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.Telefono, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.Telefono, "", new { @class = "text-danger" })
+        </div>
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(model => model.Correo, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.Correo, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.Correo, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        <div class="col-md-offset-2 col-md-10" id="btn-save">
+            <input type="submit" value="Save" class="btn btn-default" />
+        </div>
+    </div>
+</div>
+}
+
+<script type="text/javascript">
+    $(function () {
+        $.validator.unobtrusive.parse("#editForm");
+        $('#inUse').addClass('hidden');
+        cliente.addCliente("@Model.Codigo");
+        cliente.validate("@Model.Codigo");
+    });
+
+    cliente.closeModal = function () {
+        if (!cliente.recordInUse)
+            cliente.removeHubCliente("@Model.Codigo");
+    };
+</script>
